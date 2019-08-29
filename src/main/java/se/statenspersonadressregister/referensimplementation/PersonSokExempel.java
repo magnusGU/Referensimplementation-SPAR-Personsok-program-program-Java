@@ -186,7 +186,7 @@ public class PersonSokExempel {
 
         svar.getUndantag().forEach(undantag -> logUndantag(sb, undantag));
         svar.getPersonsokningSvarsPost().forEach(aviseringsPost -> logAviseringsPost(sb, aviseringsPost));
-
+	System.out.println(sb.toString());
         log.debug(sb.toString());
     }
 
