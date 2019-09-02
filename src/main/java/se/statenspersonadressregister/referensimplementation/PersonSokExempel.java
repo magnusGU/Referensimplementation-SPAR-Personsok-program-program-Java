@@ -75,25 +75,6 @@ public class PersonSokExempel {
                     createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaPersonId("197910312391")));
             logSPARPersonsokningSvar(svar);
 
-            log.debug("Sökning på felaktigt personid");
-            SPARPersonsokningSvar svarFelaktigFraga = soapKommunikation.skickaPersonsokningFraga(
-                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaPersonId("000000000000")));
-            logSPARPersonsokningSvar(svarFelaktigFraga);
-
-            log.debug("Fonetisk sökning, mikael");
-            SPARPersonsokningSvar svarFonetiskt = soapKommunikation.skickaPersonsokningFraga(
-                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaFonetiskNamnSok("mikael efter*")));
-            logSPARPersonsokningSvar(svarFonetiskt);
-
-            log.debug("Fonetisk sökning, inga träffar");
-            SPARPersonsokningSvar svarFonetiskNollTraffar = soapKommunikation.skickaPersonsokningFraga(
-                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaFonetiskNamnSok("dethärnamnetfinnsinteispar")));
-            logSPARPersonsokningSvar(svarFonetiskNollTraffar);
-
-            log.debug("Fonetisk sökning, överskridning av max antal träffar");
-            SPARPersonsokningSvar svarFonetiskForManga = soapKommunikation.skickaPersonsokningFraga(
-                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaFonetiskNamnSok("an*")));
-            logSPARPersonsokningSvar(svarFonetiskForManga);
 
         } catch (SOAPKommunikationException e) {
             log.error("Något gick fel", e);
@@ -161,17 +142,6 @@ public class PersonSokExempel {
         personsokningFraga.setPersonId(personIdTYPE);
         return personsokningFraga;
     }
-
-    /**
-     * Skapar och returnerar en fråga på fonetiskt namn
-     */
-    protected PersonsokningFragaTYPE createPersonsokningFragaFonetiskNamnSok(String fonetisktNamn) {
-        PersonsokningFragaTYPE personsokningFraga = new PersonsokningFragaTYPE();
-        personsokningFraga.setFonetiskSokning(FonetiskSokningTYPE.J);
-        personsokningFraga.setNamnSokArgument(fonetisktNamn);
-        return personsokningFraga;
-    }
-
     /**
      * Loggar ett personsökningarsvar
      */
