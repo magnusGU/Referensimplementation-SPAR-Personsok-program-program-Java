@@ -25,6 +25,8 @@ import java.util.GregorianCalendar;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Function;
+import java.awt.event.*;
+import javax.swing.*;
 
 import static se.statenspersonadressregister.referensimplementation.PersonSokExempelLogTexter.*;
 
@@ -40,12 +42,15 @@ import static se.statenspersonadressregister.referensimplementation.PersonSokExe
 public class PersonSokExempel {
     private final static Logger log = Logger.getLogger(PersonSokExempel.class);
 
+    private static JTextField t;
     private final PersonSokInstallningar personSokInstallngar;
 
     /**
      * Skapar en instans av PersonSokExempel och kör demonstrationen
      */
     public static void main(String[] args) {
+
+	t = new JTextField("YYYYMMDDXXXX",1);
         sattLog4JKonfiguration("/log4j.demonstration.properties");
         PersonSokInstallningar personSokInstallningar = new PersonSokInstallningar(args);
         new PersonSokExempel(personSokInstallningar).demonstration();
