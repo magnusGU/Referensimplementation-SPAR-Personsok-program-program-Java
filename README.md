@@ -1,19 +1,3 @@
-Klassen PersonSokExempel har en main funktion. Har testat följande nedanför
-
-mvn clean install exec:java -Dexec.mainClass="se.statenspersonadressregister.referensimpelementation.PersonSokExempel"
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Referensimplementation SPAR Personsök program-program
 
 Denna källkod är en referensimplementation av SPAR Personsök program-program version _20160213_.
