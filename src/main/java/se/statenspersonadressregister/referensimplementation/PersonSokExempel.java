@@ -39,10 +39,21 @@ import static se.statenspersonadressregister.referensimplementation.PersonSokExe
  * @see <a href="https://www.statenspersonadressregister.se/">https://www.statenspersonadressregister.se/</a>
  */
 @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
-public class PersonSokExempel {
+public class PersonSokExempel extends JFrame {
     private final static Logger log = Logger.getLogger(PersonSokExempel.class);
 
-    private static JTextField t;
+// JTextField 
+    static JTextField t; 
+  
+    // JFrame 
+    static JFrame f; 
+  
+    // JButton 
+    static JButton b; 
+  
+    // label to diaplay text 
+    static JLabel l; 
+  
     private final PersonSokInstallningar personSokInstallngar;
 
     /**
@@ -50,10 +61,43 @@ public class PersonSokExempel {
      */
     public static void main(String[] args) {
 
-	t = new JTextField("YYYYMMDDXXXX",1);
+	//t = new JTextField("YYYYMMDDXXXX",1);
         sattLog4JKonfiguration("/log4j.demonstration.properties");
         PersonSokInstallningar personSokInstallningar = new PersonSokInstallningar(args);
-        new PersonSokExempel(personSokInstallningar).demonstration();
+
+
+        // create a new frame to stor text field and button 
+        f = new JFrame("textfield"); 
+  
+        // create a label to display text 
+        l = new JLabel("YYYYMMDDXXXX"); 
+  
+        // create a new button 
+        b = new JButton("submit"); 
+  
+        // create a object of JTextField with 16 columns 
+        t = new JTextField(12); 
+  
+	b.addActionListener( new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			new PersonSokExempel(personSokInstallningar).demonstration(t.getText());
+		}
+	});
+        // create a panel to add buttons and textfield 
+        JPanel p = new JPanel(); 
+  
+        // add buttons and textfield to panel 
+        p.add(t); 
+        p.add(b); 
+        p.add(l); 
+  
+        // add panel to frame 
+        f.add(p); 
+  
+        // set the size of frame 
+        f.setSize(300, 300); 
+  
+        f.show(); 
     }
 
     protected PersonSokExempel() {
@@ -67,7 +111,7 @@ public class PersonSokExempel {
     /**
      * Demonstration av referensimplementationen.
      */
-    private void demonstration() {
+    private void demonstration(String pid) {
         try {
             log.info("Startar demonstration av Personsök program-program, version 20160213");
 
@@ -77,7 +121,7 @@ public class PersonSokExempel {
 
             log.debug("Sökning på personid 197910312391");
             SPARPersonsokningSvar svar = soapKommunikation.skickaPersonsokningFraga(
-                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaPersonId("197910312391")));
+                    createSPARPersonsokningFraga(identifieringsInformation, createPersonsokningFragaPersonId(pid)));
             logSPARPersonsokningSvar(svar);
 
 
@@ -163,6 +207,7 @@ public class PersonSokExempel {
         svar.getPersonsokningSvarsPost().forEach(aviseringsPost -> logAviseringsPost(sb, aviseringsPost));
 	System.out.println(sb.toString());
         log.debug(sb.toString());
+	l.setText(sb.toString());
     }
 
     /**
