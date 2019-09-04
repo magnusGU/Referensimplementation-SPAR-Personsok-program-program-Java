@@ -42,17 +42,11 @@ import static se.statenspersonadressregister.referensimplementation.PersonSokExe
 public class PersonSokExempel extends JFrame {
     private final static Logger log = Logger.getLogger(PersonSokExempel.class);
 
-// JTextField 
+
     static JTextField t; 
-  
-    // JFrame 
     static JFrame f; 
-  
-    // JButton 
     static JButton b; 
-  
-    // label to diaplay text 
-    static JLabel l; 
+    static JTextArea l; 
   
     private final PersonSokInstallningar personSokInstallngar;
 
@@ -60,43 +54,30 @@ public class PersonSokExempel extends JFrame {
      * Skapar en instans av PersonSokExempel och kör demonstrationen
      */
     public static void main(String[] args) {
-
-	//t = new JTextField("YYYYMMDDXXXX",1);
         sattLog4JKonfiguration("/log4j.demonstration.properties");
         PersonSokInstallningar personSokInstallningar = new PersonSokInstallningar(args);
 
 
-        // create a new frame to stor text field and button 
-        f = new JFrame("textfield"); 
-  
-        // create a label to display text 
-        l = new JLabel("YYYYMMDDXXXX"); 
-  
-        // create a new button 
+        f = new JFrame("textfield");  
+        l = new JTextArea(5,20);
         b = new JButton("submit"); 
-  
-        // create a object of JTextField with 16 columns 
         t = new JTextField(12); 
-  
+  	
+	l.setEditable(false);
+
 	b.addActionListener( new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			new PersonSokExempel(personSokInstallningar).demonstration(t.getText());
 		}
 	});
-        // create a panel to add buttons and textfield 
+
         JPanel p = new JPanel(); 
-  
-        // add buttons and textfield to panel 
         p.add(t); 
         p.add(b); 
         p.add(l); 
-  
-        // add panel to frame 
+ 
         f.add(p); 
-  
-        // set the size of frame 
-        f.setSize(300, 300); 
-  
+        f.setSize(600, 800); 
         f.show(); 
     }
 
