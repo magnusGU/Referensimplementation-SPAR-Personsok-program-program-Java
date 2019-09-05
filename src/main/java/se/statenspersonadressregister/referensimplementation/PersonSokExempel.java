@@ -186,6 +186,7 @@ public class PersonSokExempel extends JFrame {
 
         svar.getUndantag().forEach(undantag -> logUndantag(sb, undantag));
         svar.getPersonsokningSvarsPost().forEach(aviseringsPost -> logAviseringsPost(sb, aviseringsPost));
+	//svar.getPersonsokningSvarPost().findFirst().ifPresent(aviseringsPost -> logAviseringsPost(sb, aviseringsPost));
 	System.out.println(sb.toString());
         log.debug(sb.toString());
 	l.setText(sb.toString());
@@ -204,16 +205,16 @@ public class PersonSokExempel extends JFrame {
      * Lägger till loggningstext om aviseringsport till StringBuilder
      */
     protected void logAviseringsPost(StringBuilder sb, AviseringsPostTYPE aviseringsPost) {
-        sb.append(AVISERINGSPOST + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getPersonId(), id -> PERSON_ID + ((PersonIdTYPE) id).getFysiskPersonId() + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getSenasteAndringSPAR(), senast -> SENASTE_ANDRING_SPAR + senast + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getSekretessmarkering(), sek -> SEKRETESSMARKERING1 + sek + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getSekretessAndringsdatum(), datum -> SEKRETESS_ANDRINGSDATUM + datum + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getBeskattningsar(), ar -> BESKATTNINGSAR + ar + RADBRYT);
-        maybeAppend(sb, aviseringsPost.getSummeradInkomst(), inkomst -> SUMMERAD_INKOMST + inkomst + RADBRYT);
-        aviseringsPost.getFastighet().forEach(fastighet -> logFastighet(sb, fastighet));
-        aviseringsPost.getPersondetaljer().forEach(persondetalj -> logPersonDetalj(sb, persondetalj));
-        aviseringsPost.getRelation().forEach(relation -> logRelation(sb, relation));
+        //sb.append(AVISERINGSPOST + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getPersonId(), id -> PERSON_ID + ((PersonIdTYPE) id).getFysiskPersonId() + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getSenasteAndringSPAR(), senast -> SENASTE_ANDRING_SPAR + senast + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getSekretessmarkering(), sek -> SEKRETESSMARKERING1 + sek + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getSekretessAndringsdatum(), datum -> SEKRETESS_ANDRINGSDATUM + datum + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getBeskattningsar(), ar -> BESKATTNINGSAR + ar + RADBRYT);
+        //maybeAppend(sb, aviseringsPost.getSummeradInkomst(), inkomst -> SUMMERAD_INKOMST + inkomst + RADBRYT);
+        //aviseringsPost.getFastighet().forEach(fastighet -> logFastighet(sb, fastighet));
+        //aviseringsPost.getPersondetaljer().forEach(persondetalj -> logPersonDetalj(sb, persondetalj));
+        //aviseringsPost.getRelation().forEach(relation -> logRelation(sb, relation));
 
         Optional.ofNullable(aviseringsPost.getAdresser())
                 .ifPresent(adresser -> {
@@ -272,6 +273,7 @@ public class PersonSokExempel extends JFrame {
      * Lägger till loggningstext om folkbokföringsadress till StringBuilder
      */
     protected void logFolkbokforingsAdress(StringBuilder sb, FolkbokforingsadressTYPE fba) {
+	System.out.println(sb);
         sb.append(FOLKBOKFÖRINGSADRESS + RADBRYT);
         maybeAppend(sb, fba.getDatumFrom(), datum -> DATUM_FROM + datum + RADBRYT);
         maybeAppend(sb, fba.getDatumTill(), datum -> DATUM_TILL + datum + RADBRYT);
@@ -287,6 +289,8 @@ public class PersonSokExempel extends JFrame {
         maybeAppend(sb, fba.getDistriktKod(), kod -> DISTRIKTKOD + kod + RADBRYT);
         maybeAppend(sb, fba.getFolkbokfordKommunKod(), kod -> KOMMUNKOD + kod + RADBRYT);
         maybeAppend(sb, fba.getFolkbokfordLanKod(), kod -> LANKOD + kod + RADBRYT);
+
+	System.out.println(sb);
     }
 
     /**
